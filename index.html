@@ -1,0 +1,52 @@
+<html>
+<header>
+<title>Lab'Cesi Strasbourg</title>
+</header>
+<body>
+<script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
+<div id='vrview'></div>
+
+</body>
+<script>
+var vrView;
+const decoupeVinyle = 'decoupe-vinyle';
+
+function onVRViewReady() {
+	
+	vrView.addHotspot(decoupeVinyle, {
+		pitch: -14, // In degrees. Up is positive.
+		yaw: 4, // In degrees. To the right is positive.
+		radius: 0.25, // Radius of the circular target in meters.
+		distance: 4 // Distance of target from camera in meters.
+	});
+}
+
+function onGetPosition(e) {
+    console.log(e)
+}
+
+window.addEventListener('load', onVrViewLoad);
+
+function onVrViewLoad() {
+	// Selector '#vrview' finds element with id 'vrview'.
+	vrView = new VRView.Player('#vrview', {
+		//image: 'IMG_20181221_091155.vr.jpg',
+		image: 'IMG_20181221_091155.vr-converted.jpg',
+		is_stereo: false,
+		width: '100%',
+		height: 480,
+		is_stereo: true
+	});
+	vrView.on('ready', onVRViewReady);
+	vrView.on('getposition', onGetPosition);
+	vrView.on('click', function(event) {
+		if (event.id == decoupeVinyle) {
+			// Handle hotspot click.
+			console.log('yeah');
+			vrView.getPosition();
+		}
+	});
+
+}
+</script>
+</html>
