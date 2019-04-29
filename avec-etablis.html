@@ -1,0 +1,45 @@
+<html>
+<header>
+<title>Lab'Cesi Strasbourg</title>
+</header>
+<body>
+<script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
+<div id='vrview'></div>
+
+</body>
+<script>
+var vrView;
+
+function setSceneEvecEtablis() {
+	vrView.setContent({
+		image: 'VIRB_v0120058.jpg',
+		//image: 'https://media.githubusercontent.com/media/labcesi-strasbourg/labcesi-strasbourg.github.io/master/V0050069.jpg',
+		//preview:'/url/to/amazing-512.jpg',
+		is_stereo: false
+	});
+}
+
+function onVRViewReady() {
+}
+
+function onGetPosition(e) {
+    console.log(e)
+}
+
+window.addEventListener('load', onVrViewLoad);
+
+function onVrViewLoad() {
+	// Selector '#vrview' finds element with id 'vrview'.
+	vrView = new VRView.Player('#vrview', {
+		image: 'https://media.githubusercontent.com/media/labcesi-strasbourg/labcesi-strasbourg.github.io/master/VIRB_v0120058.jpg',
+		is_stereo: false,
+		//is_stereo: true,
+		width: '100%',
+		height: 480,
+		//is_debug: true,
+		default_yaw: 83,
+	});
+	vrView.on('ready', onVRViewReady);
+}
+</script>
+</html>
